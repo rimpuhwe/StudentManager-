@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +13,8 @@ public class Main {
         students.add(student2);
         System.out.println(students);
         StudentManager.sortStudents(students);
+        StudentManager.searchStudents(students , 120);
+
 
 
 //        System.out.println(student1.getStudentMap());
