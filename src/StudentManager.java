@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+
 public class StudentManager{
     private final HashMap<String , Object> studentMap;
     // building constructor
@@ -25,9 +26,24 @@ public class StudentManager{
         //using comparator for comparing ids in studentMap object
         students.sort(Comparator.comparingInt(student -> (int) student.getStudentMap().get("id")));
         System.out.println("Sorted students by id in ascending order: "+ students);
-
-
     }
+    // method for searching by id
+    public static void searchStudents(ArrayList<StudentManager> students, int id){
+        Object student =  students.stream()
+                .map(StudentManager::getStudentMap)
+                .filter(map ->  map.get("id").equals(id))
+                .findFirst()
+                //when nothing found
+                .orElse(null);
+
+        if(student != null){
+            System.out.println("the student with id " + id + " is " + student);
+        }
+        else{
+            System.out.println("the student with id " + id + " is not found");
+        }
+    }
+
 
     @Override
     public String toString() {
