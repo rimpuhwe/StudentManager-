@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import java.util.Comparator;
 import java.util.HashMap;
 
@@ -42,6 +41,19 @@ public class StudentManager{
         else{
             System.out.println("the student with id " + id + " is not found");
         }
+    }
+    public static void removeStudent(ArrayList<StudentManager> students, int id){
+       boolean removed = students.removeIf(student -> {
+           Object studentId = student.getStudentMap().get("id");
+           return studentId != null && studentId.equals(id);
+       });
+       if(removed){
+           System.out.println("the student with id " + id + " is removed");
+       }
+       else{
+           System.out.println("the student with id " + id + " is not found");
+       }
+
     }
 
 

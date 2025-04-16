@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +13,8 @@ public class Main {
         System.out.println(students);
         StudentManager.sortStudents(students);
         StudentManager.searchStudents(students , 120);
+        StudentManager.removeStudent(students , 103);
+        System.out.println(students);
 
 
 
