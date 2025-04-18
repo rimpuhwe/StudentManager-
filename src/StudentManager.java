@@ -37,37 +37,51 @@ public class StudentManager{
     }
     // method for sorting by id
     public static void sortStudents(ArrayList<StudentManager> students){
-        //using comparator for comparing ids in studentMap object
-        students.sort(Comparator.comparingInt(student -> (int) student.getStudentMap().get("id")));
-        System.out.println("Sorted students by id in ascending order: "+ students);
+        try{
+            //using comparator for comparing ids in studentMap object
+            students.sort(Comparator.comparingInt(student -> (int) student.getStudentMap().get("id")));
+            System.out.println("Sorted students by id in ascending order: " + students);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
     // method for searching by id
     public static void searchStudents(ArrayList<StudentManager> students, int id){
-        Object student =  students.stream()
-                .map(StudentManager::getStudentMap)
-                .filter(map ->  map.get("id").equals(id))
-                .findFirst()
-                //when nothing found
-                .orElse(null);
+        try{
+            Object student = students.stream()
+                    .map(StudentManager::getStudentMap)
+                    .filter(map -> map.get("id").equals(id))
+                    .findFirst()
+                    //when nothing found
+                    .orElse(null);
 
-        if(student != null){
-            System.out.println("the student with id " + id + " is " + student);
+            if (student != null) {
+                System.out.println("the student with id " + id + " is " + student);
+            } else {
+                System.out.println("the student with id " + id + " is not found");
+            }
         }
-        else{
-            System.out.println("the student with id " + id + " is not found");
+        catch(Exception e){
+            //running into system.err.println for consoling the error messages
+            System.err.println("Error searching a student: " + e.getMessage());
         }
     }
     public static void removeStudent(ArrayList<StudentManager> students, int id){
-       boolean removed = students.removeIf(student -> {
-           Object studentId = student.getStudentMap().get("id");
-           return studentId != null && studentId.equals(id);
-       });
-       if(removed){
-           System.out.println("the student with id " + id + " is removed");
-       }
-       else{
-           System.out.println("the student with id " + id + " is not found");
-       }
+        try{
+            boolean removed = students.removeIf(student -> {
+                Object studentId = student.getStudentMap().get("id");
+                return studentId != null && studentId.equals(id);
+            });
+            if (removed) {
+                System.out.println("the student with id " + id + " is removed");
+            } else {
+                System.out.println("the student with id " + id + " is not found");
+            }
+        }
+        catch(Exception e){
+            System.err.println("Error while removing student: " + e.getMessage());
+        }
 
     }
 
