@@ -10,19 +10,28 @@ public class StudentManager{
         this.studentMap = new HashMap<>();
     }
 
-    // method for adding the student
-    public void addStudent(String name , int id , String course) {
+    /**
+     * Adding the name, id,course of students to a unique  object
+     * @param name
+     * @param id
+     * @param course
+     */
+    public void addStudent(String name , int id , String course) throws StudentException {
         if (name == null || name.isEmpty()){
-            throw new IllegalArgumentException("Name cannot be empty or null");
+            throw new StudentException("Name cannot be empty or null");
         }
         if(id < 0){
-            throw new IllegalArgumentException("ID cannot be less than 0");
+            throw new StudentException("ID cannot be less than 0");
         }
         studentMap.put("name", name);
         studentMap.put("id", id);
         studentMap.put("course", course);
     }
-    //method for returning the map for testing
+
+    /**
+     * this method return the object with name , id , course keys with their values
+     * @return {"name":value , "id": value , "course" : value}
+     */
     public HashMap<String , Object> getStudentMap(){
         return studentMap;
     }
