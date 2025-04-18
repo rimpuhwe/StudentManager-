@@ -12,6 +12,12 @@ public class StudentManager{
 
     // method for adding the student
     public void addStudent(String name , int id , String course) {
+        if (name == null || name.isEmpty()){
+            throw new IllegalArgumentException("Name cannot be empty or null");
+        }
+        if(id < 0){
+            throw new IllegalArgumentException("ID cannot be less than 0");
+        }
         studentMap.put("name", name);
         studentMap.put("id", id);
         studentMap.put("course", course);
